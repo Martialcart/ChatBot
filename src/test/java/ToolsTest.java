@@ -30,7 +30,8 @@ public class ToolsTest {
     }
 
     private void equalArray(String[] s1, String[] s2) {
-        if (s1.length != s2.length) fail("\nexpected size = " + s1.length + "\nresult size = " + s2.length);
+        if (s1.length != s2.length) fail(   "\nexpected size = " + s1.length +
+                                            "\nresult size = " + s2.length);
         for (int i = 0; i < s1.length; i++) {
             assertEquals(s1[i], s2[i]);
         }
