@@ -7,7 +7,7 @@ public class Tools {
     private static String s;
 
 
-    public static String[] wordify(String sentence) {
+    public static ArrayList<String> wordify(String sentence) {
         words.clear();
         s = sentence.toLowerCase();
 
@@ -22,7 +22,7 @@ public class Tools {
                 strBld.setLength(0);
             }
         }
-        return words.toArray(new String[words.size()]);
+        return (ArrayList<String>) words.clone();
     }
     private static boolean letter(char c) {
         return c <= 'z' && 'a' <= c;
