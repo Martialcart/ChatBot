@@ -1,5 +1,5 @@
 public class Tools {
-    public static String[] wordify(String) {
+    public static String[] wordify(String sentence) {
         return null;
     }
 }
