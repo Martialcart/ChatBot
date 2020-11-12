@@ -23,14 +23,14 @@ public class ToolsTest {
 
     @Test
     public void WordifyUpperToLowerCaseTest() {
-        String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
-        String[] expected = {"abcdefghijklmnopqrstuvwxyzæøå"};
+        String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String[] expected = {"abcdefghijklmnopqrstuvwxyz"};
         String[] result = Tools.wordify(uppercase);
         equalArray(expected, result);
     }
 
     private void equalArray(String[] s1, String[] s2) {
-        if (s1.length != s2.length) fail("Array's have different lengths");
+        if (s1.length != s2.length) fail("\nexpected size = " + s1.length + "\nresult size = " + s2.length);
         for (int i = 0; i < s1.length; i++) {
             assertEquals(s1[i], s2[i]);
         }
