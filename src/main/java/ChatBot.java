@@ -15,22 +15,34 @@ public class ChatBot {
     public ChatBot() {
         sentence.add(WELCOME);
     }
+    public void save(){
+
+    }
     public String send(String message) {
+        String answer = findAnswer(message);
         recordMessage(message);
-        return findAnswer();
+        return answer;
     }
     public String welcomeMessage() {
         lastResponseIndex = 0;
         return sentence.get(0);
     }
 
-    private String findAnswer() {
+    private String findAnswer(String message) {
         sentenceScore.reset();
+        for(String w: Tools.wordify(message)) {
+            if (word.containsKey(w)) {
+                for(Integer i: word.get(w)) {
+                    sentenceScore.add(i);
+                }
+            }
+        }
+
         for (int i = log.size()-1; 0 < i; i--) {
             if(word.containsKey(log.get(i))) {
                 for (Integer w :word.get(log.get(i))) {
                     sentenceScore.add(w);
-                    if(i%5 == 0) temp = sentenceScore.winner();
+                    temp = sentenceScore.winner();
                     if(temp != null) {
                         lastResponseIndex = temp;
                         return sentence.get(temp);
@@ -38,29 +50,32 @@ public class ChatBot {
                 }
             }
         }
-        return randomMessage();
+        return randomMessage() + "random message";
     }
 
     private String randomMessage() {
-        return sentence.get((int)(Math.random() * (sentence.size() - 1)));
+        temp = (int)(Math.random() * (sentence.size() - 1));
+        lastResponseIndex = temp;
+        return sentence.get(temp);
     }
 
     private void recordMessage(String message) {
         linkPreviousResponse(message);
-        sentence.add(message);
         log.addAll(Tools.wordify(message));
     }
 
     private void linkPreviousResponse(String message) {
-        if(sentence.contains(message)) {
-            temp = sentence.indexOf(message);
-            for(String w: Tools.wordify(sentence.get(lastResponseIndex))) {
-                if(word.containsKey(w)) {
-                    word.get(w).add(temp);
-                }else {
-                    word.put(w,new ArrayList<>());
-                    word.get(w).add(temp);
-                }
+        if(!sentence.contains(message)) {
+            sentence.add(message);
+        }
+        temp = sentence.indexOf(message);
+        for(String w: Tools.wordify(sentence.get(lastResponseIndex))) {
+            if(word.containsKey(w) && !word.get(w).contains(w)) {
+                this.word.get(w).add(temp);
+            }else {
+                System.out.println("added new word " + w);
+                word.put(w,new ArrayList<>());
+                word.get(w).add(temp);
             }
         }
     }
