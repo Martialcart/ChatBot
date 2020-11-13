@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,14 +16,14 @@ public class ScorerTest{
     }
     @Test
     public void onlyOneWinnerSuccesTest() {
-        scr.add(1,2,2,3,3,3,4,4,4,4);
-        assertTrue(scr.winner());
+        scr.add(12,100,10,25,12, 30, 31, 25, 25);
+        assertEquals(25, scr.winner(), "Object counted the most");
     }
 
     @Test
     public void onlyOneWinnerFailTest() {
         scr.add(1,2,2,3,3,3,4,4,4);
-        assertFalse(scr.winner());
+        assertEquals(null, scr.winner());
     }
 
 

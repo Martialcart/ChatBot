@@ -9,20 +9,25 @@ import java.util.Map;
 public class ChatBot {
     private ArrayList<String> sentence = new ArrayList<String>();
     private ArrayList<String> log = new ArrayList<String>();
-    private ArrayList<String> sentenceScores = new ArrayList<String>();
     private Map<String, List<Integer>> word = new HashMap<String, List<Integer>>();
-    private int lastBotMessageIndex;
+    private Scorer<Integer> sentenceScore = new Scorer<>();
+    private Integer temp;
 
     public ChatBot() {
     }
     public String send(String message) {
         sentence.add(message);
         log.addAll(Tools.wordify(message));
+        sentenceScore.reset();
 
         for (int i = log.size(); 0 < i; i--) {
             if(word.containsKey(log.get(i))) {
                 for (Integer w :word.get(log.get(i))) {
-                   //create sentence scores
+                   sentenceScore.add(w);
+                   temp = sentenceScore.winner();
+                   if(temp != null) {
+                       return sentence.get(temp);
+                   }
                 }
             }
         }
