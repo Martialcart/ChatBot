@@ -20,7 +20,7 @@ public class ChatBot {
         log.addAll(Tools.wordify(message));
 
         for (int i = log.size(); 0 < i; i--) {
-            if(word.containsKey(log)) {
+            if(word.containsKey(log.get(i))) {
                 for (Integer w :word.get(log.get(i))) {
                    //create sentence scores
                 }
