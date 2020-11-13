@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ToolsTest extends {
+public class ToolsTest {
     private static ArrayList<String> expected = new ArrayList<String>();
     private static ArrayList<String> result = new ArrayList<String>();
 
