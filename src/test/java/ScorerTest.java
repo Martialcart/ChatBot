@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ScorerTest{
     private Scorer<Integer> scr;
@@ -15,9 +15,16 @@ public class ScorerTest{
     }
 
     @Test
-    public void onlyOneWinnerTest() {
-        scr.add(1,1,2,2,3,3,4,4,5,5);
+    public void onlyOneWinnerFailTest() {
+        scr.add(1,2,2,3,3,3,4,4,4,4);
+        assertFalse(scr.winner());
     }
+    @Test
+    public void onlyOneWinnerSuccesTest() {
+        scr.add(1,1,2,2,3,3,3,4,4,4,4);
+        assertTrue(scr.winner());
+    }
+
     @Test
     public void addTest() {
         scr.add(1);

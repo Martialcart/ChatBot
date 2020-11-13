@@ -22,4 +22,7 @@ public class Scorer<T> {
     public void reset() {
         scores.clear();
     }
+    public boolean winner() {
+        return true;
+    }
 }
