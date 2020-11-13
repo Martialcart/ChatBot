@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Scorer<T> {
@@ -14,6 +15,9 @@ public class Scorer<T> {
                 scores.put(args[i],1);
             }
         }
+    }
+    public void addAll(ArrayList<T> list) {
+
     }
     public int size() {
         return scores.size();

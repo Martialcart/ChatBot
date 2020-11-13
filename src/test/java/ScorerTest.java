@@ -16,12 +16,12 @@ public class ScorerTest{
 
     @Test
     public void onlyOneWinnerFailTest() {
-        scr.add(1,2,2,3,3,3,4,4,4,4);
+        scr.add(1,2,2,3,3,3,4,4,4);
         assertFalse(scr.winner());
     }
     @Test
     public void onlyOneWinnerSuccesTest() {
-        scr.add(1,1,2,2,3,3,3,4,4,4,4);
+        scr.add(1,2,2,3,3,3,4,4,4,4);
         assertTrue(scr.winner());
     }
 
