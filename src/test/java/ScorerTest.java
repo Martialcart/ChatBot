@@ -33,7 +33,12 @@ public class ScorerTest{
     }
     @Test
     public void addAllTest(){
-        
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < ITERATIONS; i++) {
+            numbers.add(i);
+        }
+        scr.addAll(numbers);
+        assertEquals(ITERATIONS, scr.size(), "amount of elements");
     }
     @Test
     public void resetTest() {
