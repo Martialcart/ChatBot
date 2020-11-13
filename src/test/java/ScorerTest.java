@@ -13,12 +13,6 @@ public class ScorerTest{
     public void setup(){
         scr = new Scorer<Integer>();
     }
-
-    @Test
-    public void onlyOneWinnerFailTest() {
-        scr.add(1,2,2,3,3,3,4,4,4);
-        assertFalse(scr.winner());
-    }
     @Test
     public void onlyOneWinnerSuccesTest() {
         scr.add(1,2,2,3,3,3,4,4,4,4);
@@ -26,9 +20,20 @@ public class ScorerTest{
     }
 
     @Test
+    public void onlyOneWinnerFailTest() {
+        scr.add(1,2,2,3,3,3,4,4,4);
+        assertFalse(scr.winner());
+    }
+
+
+    @Test
     public void addTest() {
         scr.add(1);
         assertEquals(1, scr.size());
+    }
+    @Test
+    public void addAllTest(){
+        
     }
     @Test
     public void resetTest() {
