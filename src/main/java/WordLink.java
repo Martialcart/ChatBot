@@ -42,4 +42,8 @@ public class WordLink {
         }
         map.get(key).add(value);
     }
+
+    public boolean containsWord(String word) {
+        return words.containsKey(word);
+    }
 }

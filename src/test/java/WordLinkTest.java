@@ -17,8 +17,8 @@ public class WordLinkTest {
     @Test
     public void containsWordTest() {
         wl.addLink("Hei","Heisan!, hyggelig å møte deg.");
-        assertTrue(wl.containsWord("Hei"));
-        assertFalse(wl.containsWord("test"));
+        assertTrue(wl.containsWord("Hei"), "WordLink should contain the key \"Hei\"");
+        assertFalse(wl.containsWord("test"), "WordLink Should not contain the key \"test\"");
     }
     @Test
     public void noWordDuplicates(){
