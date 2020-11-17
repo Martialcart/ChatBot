@@ -26,12 +26,11 @@ public class ChatBot {
     private String findAnswer(String message) {
         AnswerScore.reset();
         for(String w: Tools.wordify(message)) {
-            if(wl.containsWord(w));
-                for(String s: wl.wordLinks(w)) {
-                    AnswerScore.add(s);
+                for (String s : wl.wordLinks(w)) {
+                        AnswerScore.add(s);
                 }
-            }
-        for (int i = log.size()-1; 0 < i; i--) {
+        }
+        for (int i = log.size()-1; 0 <= i; i--) {
                 for (String w :wl.wordLinks(log.get(i))) {
                     AnswerScore.add(w);
                     temp = AnswerScore.winner();
@@ -42,6 +41,9 @@ public class ChatBot {
                 }
         }
         return welcomeMessage();
+    }
+    private String randomMessage(){
+        return wl.randomSentence();
     }
 
     private void updateLog(String message) {

@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  *A two way HashMap
@@ -9,6 +11,7 @@ import java.util.HashSet;
 public class WordLink {
     private HashMap<String, HashSet<String>> words = new HashMap<>();
     private HashMap<String, HashSet<String>> sentences = new HashMap<>();
+    private List<String> list = new ArrayList<>();
 
     public void addLink(String word, String sentence) {
         add(word, sentence, words);
@@ -23,17 +26,15 @@ public class WordLink {
     }
 
     public HashSet<String> wordLinks(String word) {
-        System.out.println("word");
         return clone(words.get(word));
     }
 
     public HashSet<String> sentenceLink(String sentence) {
-        System.out.println("sentence");
         return clone(sentences.get(sentence));
     }
     private HashSet<String> clone(HashSet<String> original) {
         HashSet<String> set = new HashSet<>();
-        set.addAll(original);
+        if(original != null) set.addAll(original);
         return set;
     }
     private void add(String key, String value, HashMap<String,HashSet<String>> map) {
@@ -45,5 +46,11 @@ public class WordLink {
 
     public boolean containsWord(String word) {
         return words.containsKey(word);
+    }
+
+    public String randomSentence() {
+        list = new ArrayList<String>(sentences.keySet());
+        int num = (int) Math.random() * (list.size() - 1);
+        return list.get(num);
     }
 }
