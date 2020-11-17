@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class WordLinkTest {
@@ -11,7 +14,12 @@ public class WordLinkTest {
     public void setup() {
         wl = new WordLink();
     }
-
+    @Test
+    public void containsWordTest() {
+        wl.addLink("Hei","Heisan!, hyggelig å møte deg.");
+        assertTrue(wl.containsWord("Hei"));
+        assertFalse(wl.containsWord("test"));
+    }
     @Test
     public void noWordDuplicates(){
         wl.addLink("Hei","Heisan!, hyggelig å møte deg.");

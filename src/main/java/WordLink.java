@@ -32,7 +32,7 @@ public class WordLink {
         return clone(sentences.get(sentence));
     }
     private HashSet<String> clone(HashSet<String> original) {
-        HashSet<String> set = new HashSet<String>();
+        HashSet<String> set = new HashSet<>();
         set.addAll(original);
         return set;
     }
