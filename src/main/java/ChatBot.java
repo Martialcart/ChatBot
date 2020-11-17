@@ -8,8 +8,7 @@ public class ChatBot {
     private WordLink wl = new WordLink();
     private ArrayList<String> log = new ArrayList<String>();
     private Scorer<String> AnswerScore = new Scorer<>();
-    private String temp;
-    private String lastResponse;
+    private String temp, lastResponse;
     private final String WELCOME_MESSAGE = "hi, I am chatbot, how are you doing?";
 
 
@@ -42,7 +41,7 @@ public class ChatBot {
                     }
                 }
         }
-        return welcomeMessage();
+        return randomMessage();
     }
     private String randomMessage(){
         return wl.randomSentence();

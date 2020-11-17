@@ -26,10 +26,11 @@ public class WordLink {
     public void save() throws IOException {
         File save = new File("text.txt");
         buffer = new FileWriter(save);
-        sentences.keySet().iterator().forEachRemaining(s -> {
-            write(s + NEXT_LINE);
-            sentences.get(s).forEach(w -> {
-                write(w + SPACE);
+
+        sentences.keySet().iterator().forEachRemaining(sentence -> {
+            write(sentence + NEXT_LINE);
+            sentences.get(sentence).forEach(word -> {
+                write(word + SPACE);
             });
             write(NEXT_LINE);
         });
