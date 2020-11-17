@@ -1,7 +1,5 @@
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 /**
  *A two way HashMap
@@ -19,12 +17,6 @@ public class WordLink {
     public int wordAmount() {
         return words.size();
     }
-    private void add(String key, String value, HashMap<String,HashSet<String>> map) {
-        if (!map.containsKey(key)) {
-            map.put(key, new HashSet<String>());
-        }
-        map.get(key).add(value);
-    }
 
     public int sentenceAmount() {
         return sentences.size();
@@ -40,9 +32,14 @@ public class WordLink {
         return clone(sentences.get(sentence));
     }
     private HashSet<String> clone(HashSet<String> original) {
-
         HashSet<String> set = new HashSet<String>();
         set.addAll(original);
         return set;
+    }
+    private void add(String key, String value, HashMap<String,HashSet<String>> map) {
+        if (!map.containsKey(key)) {
+            map.put(key, new HashSet<String>());
+        }
+        map.get(key).add(value);
     }
 }

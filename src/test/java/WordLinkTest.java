@@ -16,14 +16,14 @@ public class WordLinkTest {
     public void noWordDuplicates(){
         wl.addLink("Hei","Heisan!, hyggelig å møte deg.");
         wl.addLink("Hei","Hei!, hvordan går det?");
-        assertEquals(1,wl.wordAmount());
+        assertEquals(1,wl.wordAmount(), "word duplicates");
     }
 
     @Test
     public void noSentenceDuplicates() {
         wl.addLink("Hei", "Heisan!, hyggelig å møte deg.");
         wl.addLink("hallo", "Heisan!, hyggelig å møte deg.");
-        assertEquals(1, wl.sentenceAmount());
+        assertEquals(1, wl.sentenceAmount(), "sentence duplicates");
     }
     @Test
     public void noWordLinkDuplicates(){
@@ -39,12 +39,12 @@ public class WordLinkTest {
         wl.addLink("Hei", "Heisan!, hyggelig å møte deg.");
         wl.addLink("Hei", "Heisan!, hyggelig å møte deg.");
         wl.addLink("Hei", "Heisan!, hyggelig å møte deg.");
-        assertEquals(1, wl.sentenceLink("Hei").size(), "Sentence link duplicates");
+        assertEquals(1, wl.sentenceLink("Heisan!, hyggelig å møte deg.").size(), "Sentence link duplicates");
     }
     @Test
     public void addLinkTest() {
         wl.addLink("Hei","Heisan!, hyggelig å møte deg.");
-        assertEquals(1,wl.wordAmount());
-        assertEquals(1,wl.sentenceAmount());
+        assertEquals(1,wl.wordAmount(), "word links");
+        assertEquals(1,wl.sentenceAmount(), "sentence links");
     }
 }
