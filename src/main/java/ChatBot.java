@@ -1,6 +1,10 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ChatBot {
+
     private WordLink wl = new WordLink();
     private ArrayList<String> log = new ArrayList<String>();
     private Scorer<String> AnswerScore = new Scorer<>();
@@ -9,9 +13,7 @@ public class ChatBot {
     private final String WELCOME_MESSAGE = "hi, I am chatbot, how are you doing?";
 
 
-    public void save(){
 
-    }
     public String send(String message) {
         String answer = findAnswer(message);
         linkPreviousResponse(message);
@@ -54,5 +56,9 @@ public class ChatBot {
         for(String s: Tools.wordify(lastResponse)) {
             wl.addLink(s, message);
         }
+    }
+
+    public void save() throws IOException {
+        wl.save();
     }
 }
