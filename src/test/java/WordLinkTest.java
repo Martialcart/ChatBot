@@ -1,9 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class WordLinkTest {
@@ -54,5 +55,12 @@ public class WordLinkTest {
         wl.addLink("Hei","Heisan!, hyggelig å møte deg.");
         assertEquals(1,wl.wordAmount(), "word links");
         assertEquals(1,wl.sentenceAmount(), "sentence links");
+    }
+
+    @Test
+    public void randomMessageTest(){
+        wl.addLink("Hei", "Heisan!, hyggelig å møte deg.");
+        wl.addLink("livet", "Meningen med livet er å underholde meg");
+        System.out.println( wl.randomSentence());
     }
 }

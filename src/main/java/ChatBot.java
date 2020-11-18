@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +45,11 @@ public class ChatBot {
         return randomMessage();
     }
     private String randomMessage(){
+        temp = wl.randomSentence();
+        if(temp == null) {
+            return welcomeMessage();
+        }
+        lastResponse = temp;
         return wl.randomSentence();
     }
 
@@ -57,7 +63,10 @@ public class ChatBot {
         }
     }
 
-    public void save() throws IOException {
-        wl.save();
+    public void save(String fileName) throws IOException {
+        wl.save(fileName);
+    }
+    public void load(String fileName) throws FileNotFoundException {
+        wl.load(fileName);
     }
 }

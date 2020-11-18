@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -9,7 +7,8 @@ import java.util.*;
  * a sentence key can open several words.
  */
 public class WordLink {
-    FileWriter buffer;
+    FileWriter writer;
+    Scanner reader;
     private static final String NEXT_LINE = "\n";
     private static final String SPACE = " ";
     private HashMap<String, HashSet<String>> words = new HashMap<>();
@@ -23,9 +22,10 @@ public class WordLink {
     public int wordAmount() {
         return words.size();
     }
-    public void save() throws IOException {
-        File save = new File("text.txt");
-        buffer = new FileWriter(save);
+
+    public void save(String fileName) throws IOException {
+        File save = new File(fileName);
+        writer = new FileWriter(save);
 
         sentences.keySet().iterator().forEachRemaining(sentence -> {
             write(sentence + NEXT_LINE);
@@ -34,7 +34,7 @@ public class WordLink {
             });
             write(NEXT_LINE);
         });
-        buffer.close();
+        writer.close();
     }
 
     public int sentenceAmount() {
@@ -46,7 +46,7 @@ public class WordLink {
     }
     private void write(String s) {
         try {
-            buffer.append(s);
+            writer.append(s);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,7 +73,31 @@ public class WordLink {
 
     public String randomSentence() {
         list = new ArrayList<String>(sentences.keySet());
+        if(list.isEmpty()) return null;
         int num = (int) Math.random() * (list.size() - 1);
         return list.get(num);
+    }
+
+    public void combine(String fileName) throws FileNotFoundException {
+        String sentence;
+        File load  = new File(fileName);
+        reader = new Scanner(load);
+        while(reader.hasNextLine()) {
+            sentence = reader.nextLine();
+            for(String word: Tools.wordify(reader.nextLine())) {
+                addLink(word, sentence);
+            }
+        }
+        reader.close();
+    }
+
+    public void load(String filename) throws FileNotFoundException {
+        reset();
+        combine(filename);
+    }
+
+    private void reset() {
+        words.clear();
+        sentences.clear();
     }
 }
